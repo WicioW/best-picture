@@ -1,0 +1,8 @@
+# get movie by its title
+GET https://{{host}}/?apikey=6f6ed922&s=Max
+Content-Type: application/json
+
+
+### get movie by its valid IMDb ID (e.g. tt1285016)
+GET https://{{host}}/?apikey=6f6ed922&i=tt3896198
+Content-Type: application/json
