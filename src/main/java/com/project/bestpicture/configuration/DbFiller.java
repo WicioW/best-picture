@@ -2,6 +2,8 @@ package com.project.bestpicture.configuration;
 
 import com.project.bestpicture.movie.domain.Movie;
 import com.project.bestpicture.movie.domain.MovieFacade;
+import com.project.bestpicture.movie.imdb.api.ImdbFullMovieInfoDto;
+import com.project.bestpicture.movie.imdb.domain.ImdbClient;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -18,15 +20,19 @@ public class DbFiller implements ApplicationRunner {
   private final System.Logger LOGGER = System.getLogger(this.getClass().getName());
 
   private final MovieFacade movieFacade;
+  private final ImdbClient imdbClient;
 
-  public DbFiller(MovieFacade movieFacade) {
+  public DbFiller(MovieFacade movieFacade, ImdbClient imdbClient) {
     this.movieFacade = movieFacade;
+    this.imdbClient = imdbClient;
   }
 
   @Override
   public void run(ApplicationArguments args) throws Exception {
+    if(movieFacade.getNumberOfMoviesInDatabase()!=0) return;
     LOGGER.log(System.Logger.Level.INFO, "---=== DBFILLER STARTED ===---");
     importMovieDataFromCSVFile();
+    importMoviesDataFromImdb();
     LOGGER.log(System.Logger.Level.INFO, "---=== DBFILLER FINISHED ===---");
   }
 
@@ -35,7 +41,6 @@ public class DbFiller implements ApplicationRunner {
   }
 
   private void importMovieDataFromCSVFile() {
-    if(movieFacade.getNumberOfMoviesInDatabase()!=0) return;
     String data = "";
     try {
       data = readFileAsString("config/academy_awards.csv");
@@ -64,5 +69,17 @@ public class DbFiller implements ApplicationRunner {
               }
             });
     return moviesFromCSV;
+  }
+
+
+  private void importMoviesDataFromImdb() {
+    System.out.println("--== IMPORTING FROM IMDB ==--");
+    movieFacade
+        .getAllMovies()
+        .forEach(
+            movie -> {
+              ImdbFullMovieInfoDto imdbMovie = imdbClient.getMovieByTitle(movie.getNominee());
+              System.out.println(imdbMovie.imdbID);
+            });
   }
 }
