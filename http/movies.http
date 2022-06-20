@@ -1,0 +1,3 @@
+### get movie by its title
+GET https://{{host}}/movies/search?title=Max
+Content-Type: application/json
