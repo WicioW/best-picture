@@ -1,0 +1,25 @@
+### register new user
+POST https://{{host}}/user/register
+Content-Type: application/json
+
+{
+  "username" : "testuser",
+  "password": "testpassword"
+}
+
+
+### login
+POST https://{{host}}/user/login
+Content-Type: application/json
+
+{
+  "username" : "testuser",
+  "password": "testpassword"
+}
+
+
+### logout
+POST https://{{host}}/user/logout
+Content-Type: application/json
+
+{}

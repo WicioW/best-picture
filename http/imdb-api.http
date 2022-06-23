@@ -1,3 +1,5 @@
+### free api key allows to make only 1000 calls per day
+
 # get movie by its title
 GET https://{{host}}/?apikey=6f6ed922&s=Max
 Content-Type: application/json
@@ -5,4 +7,12 @@ Content-Type: application/json
 
 ### get movie by its valid IMDb ID (e.g. tt1285016)
 GET https://{{host}}/?apikey=6f6ed922&i=tt3896198
+Content-Type: application/json
+
+
+###
+GET https://omdbapi.com?apikey=6f6ed922&t=Green Book
+
+###get movie by its title
+GET https://{{host}}/?apikey=6f6ed922&s=a
 Content-Type: application/json
