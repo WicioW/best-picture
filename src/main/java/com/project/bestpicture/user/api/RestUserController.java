@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/user")
 @Tag(name = "Users controller")
-public class RestUserContoller {
+public class RestUserController {
 
   private final UserFacade userFacade;
 
-  public RestUserContoller(UserFacade userFacade) {
+  public RestUserController(UserFacade userFacade) {
     this.userFacade = userFacade;
   }
 
