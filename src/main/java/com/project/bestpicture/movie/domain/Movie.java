@@ -1,9 +1,13 @@
 package com.project.bestpicture.movie.domain;
 
 import com.project.bestpicture.configuration.BaseEntity;
+import com.project.bestpicture.movierating.domain.MovieRating;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import java.util.Set;
 
 @Entity
 public class Movie extends BaseEntity {
@@ -14,6 +18,9 @@ public class Movie extends BaseEntity {
     @Column(length = 500)
     private String nominee;
     private boolean wonBestPicture;
+
+    @OneToMany(mappedBy = "movie")
+    Set<MovieRating> movieRatings;
 
     public Movie() {
     }

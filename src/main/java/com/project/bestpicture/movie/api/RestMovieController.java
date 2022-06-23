@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/movies")
 @Tag(name = "Movies controller")
-public class RestMoviesController {
+public class RestMovieController {
 
   private final MovieFacade movieFacade;
 
-  public RestMoviesController(MovieFacade movieFacade) {
+  public RestMovieController(MovieFacade movieFacade) {
     this.movieFacade = movieFacade;
   }
 

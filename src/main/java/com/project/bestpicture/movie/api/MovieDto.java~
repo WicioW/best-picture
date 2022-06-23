@@ -7,6 +7,7 @@ public class MovieDto {
     public ImdbFullMovieInfoDto additionalInfo;
     public boolean wonBestPicture;
 
+
     public MovieDto(String movieTitle, ImdbFullMovieInfoDto additionalInfo, boolean wonBestPicture) {
         this.movieTitle = movieTitle;
         this.additionalInfo = additionalInfo;

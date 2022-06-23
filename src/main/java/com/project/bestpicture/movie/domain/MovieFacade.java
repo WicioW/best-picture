@@ -24,14 +24,18 @@ public class MovieFacade {
     this.imdbService = imdbService;
   }
 
-  public MovieDto getMovieByTitle(String title){
+  public MovieDto getMovieByTitle(String title) {
     ImdbFullMovieInfoDto imdbMovieDto = imdbService.getMovieByTitle(title);
     Optional<Movie> byNominee = movieRepository.findByNominee(title);
-    MovieDto dto = new MovieDto(title, imdbMovieDto,byNominee.isPresent()? byNominee.get().isWonBestPicture(): false);
+    MovieDto dto =
+        new MovieDto(
+            title,
+            imdbMovieDto,
+            byNominee.isPresent() ? byNominee.get().isWonBestPicture() : false);
     return dto;
   }
 
-  public List<Movie> getAllMovies(){
+  public List<Movie> getAllMovies() {
     return movieRepository.findAll();
   }
 
