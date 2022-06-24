@@ -5,14 +5,13 @@ import com.project.bestpicture.exception.IncorrectRatingException;
 import com.project.bestpicture.movie.domain.Movie;
 import com.project.bestpicture.user.domain.User;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "movie_id"})})
 public class MovieRating extends BaseEntity {
 
     @ManyToOne
@@ -37,7 +36,24 @@ public class MovieRating extends BaseEntity {
         this.rating = rating;
     }
 
+    public void setRating(int rating) {
+        validateRating(rating);
+        this.rating = rating;
+    }
+
     private void validateRating(int rating){
         if(rating>10 || rating<0) throw new IncorrectRatingException();
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public int getRating() {
+        return rating;
     }
 }

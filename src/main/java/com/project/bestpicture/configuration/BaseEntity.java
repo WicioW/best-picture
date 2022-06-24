@@ -11,4 +11,8 @@ public abstract class BaseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqGen")
     @SequenceGenerator(name = "seqGen", sequenceName = "seq", initialValue = 1)
     private Long id;
+
+    public Long getId() {
+        return id;
+    }
 }

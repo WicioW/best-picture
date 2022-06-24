@@ -1,3 +1,5 @@
+### File to query and test omdb api.
+
 ### free api key allows to make only 1000 calls per day
 
 # get movie by its title
@@ -11,8 +13,8 @@ Content-Type: application/json
 
 
 ###
-GET https://omdbapi.com?apikey=6f6ed922&t=Green Book
+GET https://omdbapi.com?apikey=6f6ed922&t=Inception
 
 ###get movie by its title
-GET https://{{host}}/?apikey=6f6ed922&s=a
+GET https://{{host}}/?apikey=6f6ed922&s=Coda
 Content-Type: application/json

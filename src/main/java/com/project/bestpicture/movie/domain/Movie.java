@@ -1,13 +1,9 @@
 package com.project.bestpicture.movie.domain;
 
 import com.project.bestpicture.configuration.BaseEntity;
-import com.project.bestpicture.movierating.domain.MovieRating;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import java.util.Set;
 
 @Entity
 public class Movie extends BaseEntity {
@@ -19,8 +15,8 @@ public class Movie extends BaseEntity {
     private String nominee;
     private boolean wonBestPicture;
 
-    @OneToMany(mappedBy = "movie")
-    Set<MovieRating> movieRatings;
+    private Long boxOfficeInDollars;
+    private String imdbID;
 
     public Movie() {
     }
@@ -46,6 +42,22 @@ public class Movie extends BaseEntity {
 
     public boolean isWonBestPicture() {
         return wonBestPicture;
+    }
+
+    public Long getBoxOfficeInDollars() {
+        return boxOfficeInDollars;
+    }
+
+    public void setBoxOfficeInDollars(Long boxOfficeInDollars) {
+        this.boxOfficeInDollars = boxOfficeInDollars;
+    }
+
+    public String getImdbID() {
+        return imdbID;
+    }
+
+    public void setImdbID(String imdbID) {
+        this.imdbID = imdbID;
     }
 
     @Override

@@ -1,3 +1,13 @@
+### After login, you can get movies info or search for movies list
+
 ### get movie by its title
-GET https://{{host}}/movies/search?title=Max
+GET https://{{host}}/movies?title=The King's Speech
+Content-Type: application/json
+
+### search movies with default params (Will return 10 top-rated movies ordered by box office value)
+GET https://{{host}}/movies/search
+Content-Type: application/json
+
+### search movies with custom params
+GET https://{{host}}/movies/search?pageSize=5&pageNo=1&sortBy=year&sortDir=desc
 Content-Type: application/json

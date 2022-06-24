@@ -1,3 +1,6 @@
+### Here you can register new users, and login into application.
+### Endpoint in other files require authorization
+
 ### register new user
 POST https://{{host}}/user/register
 Content-Type: application/json
@@ -7,7 +10,6 @@ Content-Type: application/json
   "password": "testpassword"
 }
 
-
 ### login
 POST https://{{host}}/user/login
 Content-Type: application/json
@@ -16,7 +18,6 @@ Content-Type: application/json
   "username" : "testuser",
   "password": "testpassword"
 }
-
 
 ### logout
 POST https://{{host}}/user/logout

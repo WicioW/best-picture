@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class DbFiller implements ApplicationRunner {
@@ -29,7 +30,7 @@ public class DbFiller implements ApplicationRunner {
 
   @Override
   public void run(ApplicationArguments args) throws Exception {
-    if(movieFacade.getNumberOfMoviesInDatabase()!=0) return;
+    if (movieFacade.getNumberOfMoviesInDatabase() != 0) return;
     LOGGER.log(System.Logger.Level.INFO, "---=== DBFILLER STARTED ===---");
     importMovieDataFromCSVFile();
     importMoviesDataFromImdb();
@@ -71,15 +72,19 @@ public class DbFiller implements ApplicationRunner {
     return moviesFromCSV;
   }
 
-
   private void importMoviesDataFromImdb() {
-    System.out.println("--== IMPORTING FROM IMDB ==--");
+    LOGGER.log(System.Logger.Level.INFO, "--== IMPORTING FROM IMDB ==--");
     movieFacade
         .getAllMovies()
         .forEach(
             movie -> {
-              ImdbFullMovieInfoDto imdbMovie = imdbClient.getMovieByTitle(movie.getNominee());
-              System.out.println(imdbMovie.imdbID);
+              Optional<ImdbFullMovieInfoDto> optionalImdbMovie =
+                  imdbClient.getMovieByTitle(movie.getNominee());
+              if (optionalImdbMovie.isPresent()) {
+                var imdbMovie = optionalImdbMovie.get();
+                movieFacade.updateMovieFromImdb(movie, imdbMovie);
+                LOGGER.log(System.Logger.Level.INFO, imdbMovie.imdbID);
+              }
             });
   }
 }

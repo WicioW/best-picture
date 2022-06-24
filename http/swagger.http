@@ -1,0 +1,8 @@
+###
+GET https://{{host}}/swagger-ui/
+
+###
+GET https://{{host}}/swagger-ui/index.html
+
+###
+GET https://{{host}}//v3/api-docs

@@ -1,13 +1,10 @@
 package com.project.bestpicture.user.domain;
 
 import com.project.bestpicture.configuration.BaseEntity;
-import com.project.bestpicture.movierating.domain.MovieRating;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import java.util.Set;
 
 @Entity(name = "users")
 public class User extends BaseEntity {
@@ -18,8 +15,6 @@ public class User extends BaseEntity {
   @Column(nullable = false)
   private String password;
 
-  @OneToMany(mappedBy = "user")
-  Set<MovieRating> movieRatings;
 
   public User() {}
 

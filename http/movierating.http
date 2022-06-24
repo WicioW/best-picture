@@ -1,0 +1,17 @@
+### After login, you can create or update your ratings for each movie by probiding id
+
+### create rating for a movie with id
+PUT https://{{host}}/movie-rating/5
+Content-Type: application/json
+
+{
+  "rating" : 5
+}
+
+### create rating for a movie with id
+PUT https://{{host}}/movie-rating/5
+Content-Type: application/json
+
+{
+  "rating" : 10
+}

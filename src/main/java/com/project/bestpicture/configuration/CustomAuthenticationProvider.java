@@ -2,7 +2,6 @@ package com.project.bestpicture.configuration;
 
 import com.project.bestpicture.user.api.UserDto;
 import com.project.bestpicture.user.domain.User;
-import com.project.bestpicture.user.domain.UserMapper;
 import com.project.bestpicture.user.domain.UserRepository;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -45,8 +44,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     String login = authentication.getName();
 
     Optional<User> op = userRepository.findByUsername(login);
-    if (op.isPresent()) return UserMapper.single.apply(op.get());
-    return null; // we do not want to return anything if somehow we cannot find user and he is
+    // we do not want to return anything if somehow we cannot find user and he is
+    return op.map(user -> new UserDto(user.getUsername())).orElse(null);
     // logged, may be a bug
   }
 

@@ -1,5 +1,6 @@
 package com.project.bestpicture.user.api;
 
+import com.project.bestpicture.user.domain.User;
 import com.project.bestpicture.user.domain.UserFacade;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -20,6 +21,7 @@ public class RestUserController {
   @PostMapping("/register")
   @Operation(summary = "Register new user")
   public ResponseEntity<UserDto> registerUser(@RequestBody CreateUserDto registerUser) {
-    return ResponseEntity.ok(userFacade.createUser(registerUser));
+    User user = userFacade.createUser(registerUser);
+    return ResponseEntity.ok(new UserDto(user.getUsername()));
   }
 }
